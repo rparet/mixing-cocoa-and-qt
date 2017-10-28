@@ -47,6 +47,8 @@ add_library(
     ${SOURCE_FILES}
 )
 
+target_compile_options( cocoa-qt-glue PUBLIC "-F .")
+
 target_link_libraries( cocoa-qt-glue
     "-framework Sparkle"
     "-framework AppKit"
