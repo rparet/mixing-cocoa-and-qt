@@ -36,12 +36,12 @@ void SparkleAutoUpdater::checkForUpdates()
 	[d->updater checkForUpdatesInBackground];
 }
 
-void SparkleAutoUpdater::setAutomaticallyDownloadsUpdates(bool on)
-{
-	[d->updater setAutomaticallyDownloadsUpdates:on];
-}
-
-bool SparkleAutoUpdater::automaticallyDownloadsUpdates()
-{
-	return [d->updater automaticallyDownloadsUpdates];
-}
+//void SparkleAutoUpdater::setAutomaticallyDownloadsUpdates(bool on)
+//{
+//	[d->updater setAutomaticallyDownloadsUpdates:on];
+//}
+//
+//bool SparkleAutoUpdater::automaticallyDownloadsUpdates()
+//{
+//	return [d->updater automaticallyDownloadsUpdates];
+//}
