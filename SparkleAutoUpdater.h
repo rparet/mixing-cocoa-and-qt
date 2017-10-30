@@ -17,7 +17,7 @@ class SparkleAutoUpdater : public AutoUpdater
 
 		void checkForUpdates();
 //		void setAutomaticallyDownloadsUpdates(bool on);
-//		bool automaticallyDownloadsUpdates();
+		bool automaticallyDownloadsUpdates();
 
 	private:
 		class Private;

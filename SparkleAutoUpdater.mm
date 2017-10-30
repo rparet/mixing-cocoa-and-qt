@@ -40,8 +40,8 @@ void SparkleAutoUpdater::checkForUpdates()
 //{
 //	[d->updater setAutomaticallyDownloadsUpdates:on];
 //}
-//
-//bool SparkleAutoUpdater::automaticallyDownloadsUpdates()
-//{
-//	return [d->updater automaticallyDownloadsUpdates];
-//}
+
+bool SparkleAutoUpdater::automaticallyDownloadsUpdates()
+{
+	return [d->updater automaticallyDownloadsUpdates];
+}
