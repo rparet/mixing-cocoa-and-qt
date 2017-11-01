@@ -1,29 +1,31 @@
 /*
- * sparkleautoupdater.h
- *
- * License: MIT License (http://opensource.org/licenses/MIT)
- *   See sparkleautoupdater.mm
+ * Copyright (C) 2008 Remko Troncon
  */
 
-#pragma once
+#ifndef SPARKLEAUTOUPDATER_H
+#define SPARKLEAUTOUPDATER_H
 
-#include "autoupdater.h"
+#include <QString>
+
+#include "AutoUpdater.h"
 
 class SparkleAutoUpdater : public AutoUpdater
 {
-public:
-    SparkleAutoUpdater();
-    ~SparkleAutoUpdater();
+	public:
+		SparkleAutoUpdater(const QString& url);
+		~SparkleAutoUpdater();
 
-    void checkForUpdates() override;
+		void checkForUpdates() override;
 
-    void setAutomaticallyChecksForUpdates(bool on) override;
-    bool automaticallyChecksForUpdates() override;
+		void setAutomaticallyChecksForUpdates(bool on) override;
+		bool automaticallyChecksForUpdates() override;
 
-    void setAutomaticallyDownloadsUpdates(bool on) override;
-    bool automaticallyDownloadsUpdates() override;
+		void setAutomaticallyDownloadsUpdates(bool on) override;
+		bool automaticallyDownloadsUpdates() override;
 
-private:
-    class Private;
-    Private *d;
+	private:
+		class Private;
+		Private* d;
 };
+
+#endif
