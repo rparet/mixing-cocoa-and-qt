@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 #endif
 	if (updater) {
 		updater->checkForUpdates();
+		qDebug() << updater->lastUpdateCheckDate();
 	}
 	return app.exec();
 }
