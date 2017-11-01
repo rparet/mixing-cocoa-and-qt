@@ -20,8 +20,8 @@ public:
     void setAutomaticallyChecksForUpdates(bool on) override;
     bool automaticallyChecksForUpdates() override;
 
-    void setAutomaticallyDownloadsUpdates(bool on);
-    bool automaticallyDownloadsUpdates();
+    void setAutomaticallyDownloadsUpdates(bool on) override;
+    bool automaticallyDownloadsUpdates() override;
 
     QDateTime lastUpdateCheckDate() override;
 
