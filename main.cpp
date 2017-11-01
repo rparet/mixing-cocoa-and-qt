@@ -25,6 +25,7 @@ int main(int argc, char* argv[])
 	if (updater) {
 		updater->checkForUpdates();
 		qDebug() << updater->lastUpdateCheckDate();
+        qDebug() << "automaticallyDownloadsUpdates" << updater->automaticallyDownloadsUpdates();
 	}
 	return app.exec();
 }
