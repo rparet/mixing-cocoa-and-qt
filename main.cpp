@@ -4,6 +4,7 @@
 
 #include <QApplication>
 #include <QLabel>
+#include <QDebug>
 
 #ifdef Q_OS_MAC
 #include "CocoaInitializer.h"
