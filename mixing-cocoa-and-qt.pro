@@ -25,6 +25,7 @@ mac {
 	SPARKLE_PATH = $$PWD/../sparkle
     QMAKE_LFLAGS += -F $$SPARKLE_PATH
     QMAKE_OBJECTIVE_CFLAGS += -F $$SPARKLE_PATH
+    QMAKE_LFLAGS += -Wl,-rpath,@loader_path/../Frameworks
 	LIBS += -framework Sparkle -framework AppKit
 
         QMAKE_INFO_PLIST = Info.plist
