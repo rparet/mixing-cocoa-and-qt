@@ -33,6 +33,9 @@ public:
     virtual void setAutomaticallyChecksForUpdates(bool on) = 0;
     virtual bool automaticallyChecksForUpdates() = 0;
 
+    virtual void setAutomaticallyDownloadsUpdates(bool on) = 0;
+    virtual bool automaticallyDownloadsUpdates() = 0;
+
     virtual QDateTime lastUpdateCheckDate() = 0;
 
     static AutoUpdater *instance() { return sInstance; }
