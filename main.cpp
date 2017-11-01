@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 	AutoUpdater* updater;
 #ifdef Q_OS_MAC
 	CocoaInitializer initializer;
-	updater = new SparkleAutoUpdater("http://el-tramo.be/files/blog/mixing-cocoa-and-qt/appcast.xml");
+	updater = new SparkleAutoUpdater();
 #endif
 	if (updater) {
 		updater->checkForUpdates();
