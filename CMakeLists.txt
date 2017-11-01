@@ -50,6 +50,7 @@ add_library(
 target_compile_options( cocoa-qt-glue PUBLIC "-F .")
 
 SET(CMAKE_CXX_FLAGS "-F ../sparkle")
+set(CMAKE_VERBOSE_MAKEFILE ON)
 
 target_link_libraries( cocoa-qt-glue
     "-framework Sparkle"
