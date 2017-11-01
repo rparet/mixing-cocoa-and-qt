@@ -23,8 +23,6 @@ public:
     void setAutomaticallyDownloadsUpdates(bool on) override;
     bool automaticallyDownloadsUpdates() override;
 
-    QDateTime lastUpdateCheckDate() override;
-
 private:
     class Private;
     Private *d;
