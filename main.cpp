@@ -23,8 +23,7 @@ int main(int argc, char* argv[])
 	updater = new SparkleAutoUpdater();
 #endif
 	if (updater) {
-//		updater->checkForUpdates();
-		qDebug() << updater->lastUpdateCheckDate();
+		updater->checkForUpdates();
         qDebug() << "automaticallyChecksForUpdates" << updater->automaticallyChecksForUpdates();
         qDebug() << "automaticallyDownloadsUpdates" << updater->automaticallyDownloadsUpdates();
 	}
