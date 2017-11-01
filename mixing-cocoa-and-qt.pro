@@ -22,10 +22,13 @@ mac {
 	QMAKE_CXXFLAGS += -F.
 	QMAKE_CFLAGS += -F.
 	QMAKE_OBJECTIVE_CFLAGS += -F.
+	SPARKLE_PATH = $$PWD/../sparkle
+    QMAKE_LFLAGS += -F $$SPARKLE_PATH
+    QMAKE_OBJECTIVE_CFLAGS += -F $$SPARKLE_PATH
 	LIBS += -framework Sparkle -framework AppKit
 
         QMAKE_INFO_PLIST = Info.plist
-        QMAKE_POST_LINK = mkdir -p mixing-cocoa-and-qt.app/Contents/Frameworks && \
-            rm -rf mixing-cocoa-and-qt.app/Contents/Frameworks/Sparkle.framework && \
-            cp -avf /Library/Frameworks/Sparkle.framework mixing-cocoa-and-qt.app/Contents/Frameworks
+    sparkle.path = Contents/Frameworks
+    sparkle.files = $$SPARKLE_PATH/Sparkle.framework
+    QMAKE_BUNDLE_DATA += sparkle
 }
