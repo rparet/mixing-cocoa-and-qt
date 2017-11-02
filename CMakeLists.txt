@@ -71,8 +71,6 @@ add_library(
 
 SET(CMAKE_CXX_FLAGS "-F${CMAKE_CURRENT_SOURCE_DIR}/../sparkle")
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
-
 target_link_libraries( cocoa-qt-glue
   "-framework Sparkle"
   "-framework AppKit"
