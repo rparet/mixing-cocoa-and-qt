@@ -27,14 +27,14 @@ ENDIF()
 PROJECT(cocoa-qt-glue)
 
 set(HEADER_FILES
-    SparkleAutoUpdater.h
-    CocoaInitializer.h
-    AutoUpdater.h
+  SparkleAutoUpdater.h
+  CocoaInitializer.h
+  AutoUpdater.h
 )
 set(SOURCE_FILES
-    SparkleAutoUpdater.mm
-    CocoaInitializer.mm
-    AutoUpdater.cpp
+  SparkleAutoUpdater.mm
+  CocoaInitializer.mm
+  AutoUpdater.cpp
 )
 
 FIND_PACKAGE(Qt5Core REQUIRED)
@@ -63,19 +63,17 @@ INCLUDE_DIRECTORIES(
 )
 
 add_library(
-    cocoa-qt-glue
-    STATIC
-    ${HEADER_FILES}
-    ${SOURCE_FILES}
+  cocoa-qt-glue
+  STATIC
+  ${HEADER_FILES}
+  ${SOURCE_FILES}
 )
-
-target_compile_options( cocoa-qt-glue PUBLIC "-F .")
 
 SET(CMAKE_CXX_FLAGS "-F${CMAKE_CURRENT_SOURCE_DIR}/../sparkle")
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 target_link_libraries( cocoa-qt-glue
-    "-framework Sparkle"
-    "-framework AppKit"
+  "-framework Sparkle"
+  "-framework AppKit"
 )
