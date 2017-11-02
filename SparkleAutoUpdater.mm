@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008 Remko Troncon
+ * Copyright (C) 2017 Vadim Peretokin
  */
 
 #include "SparkleAutoUpdater.h"
