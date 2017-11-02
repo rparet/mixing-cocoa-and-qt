@@ -50,6 +50,12 @@ add_library(
 target_compile_options( cocoa-qt-glue PUBLIC "-F .")
 
 SET(CMAKE_CXX_FLAGS "-F ../3rdparty/sparkle")
+SET(CMAKE_CXX_FLAGS "-F../3rdparty/sparkle")
+SET(CMAKE_CXX_FLAGS "-F ../sparkle")
+SET(CMAKE_CXX_FLAGS "-F../sparkle")
+SET(CMAKE_CXX_FLAGS "-F ${CMAKE_CURRENT_SOURCE_DIR}/../sparkle")
+SET(CMAKE_CXX_FLAGS "-F${CMAKE_CURRENT_SOURCE_DIR}/../sparkle")
+
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 target_link_libraries( cocoa-qt-glue
