@@ -9,10 +9,12 @@ PROJECT(cocoa-qt-glue)
 set(HEADER_FILES
     SparkleAutoUpdater.h
     CocoaInitializer.h
+    AutoUpdater.h
 )
 set(SOURCE_FILES
     SparkleAutoUpdater.mm
     CocoaInitializer.mm
+    AutoUpdater.cpp
 )
 
 FIND_PACKAGE(Qt5Core REQUIRED)
