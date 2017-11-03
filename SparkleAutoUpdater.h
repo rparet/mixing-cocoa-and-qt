@@ -25,12 +25,12 @@ class SparkleAutoUpdater : public AutoUpdater
 		bool automaticallyDownloadsUpdates() override;
 
 		bool justUpdated() override;
+		void setRelaunchFlag();
 
 	private:
 		class Private;
 		Private* d;
 		bool relaunchedFromUpdate;
-		void setRelaunchFlag();
 };
 
 #endif
