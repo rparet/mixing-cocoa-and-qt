@@ -15,11 +15,14 @@ public:
 };
 
 @interface SparkleDelegate : NSObject <SUUpdaterDelegate> {
-    Sparkle* delegateHandler;
+  SparkleAutoUpdater* delegateHandler;
 }
 
+- (void)updaterDidRelaunchApplication:(SUUpdater *)updater;
+@end
+
 @implementation SparkleDelegate
-- (id) init:(Sparkle*)handler
+- (id) init:(SparkleAutoUpdater*)handler
 {
     self = [super init];
     if (self) {
@@ -32,6 +35,7 @@ public:
 {
     delegateHandler->setRelaunchFlag();
 }
+@end
 
 void SparkleAutoUpdater::setRelaunchFlag()
 {
