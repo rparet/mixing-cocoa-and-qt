@@ -19,7 +19,7 @@ public:
     virtual void setAutomaticallyDownloadsUpdates(bool on) = 0;
     virtual bool automaticallyDownloadsUpdates() = 0;
 
-    virtual bool relaunchedFromUpdate() = 0;
+    virtual bool justUpdated() = 0;
 };
 
 #endif

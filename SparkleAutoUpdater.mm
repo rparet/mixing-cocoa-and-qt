@@ -38,7 +38,7 @@ void SparkleAutoUpdater::setRelaunchFlag()
     relaunchedFromUpdate = true;
 }
 
-bool SparkleAutoUpdater::relaunchedFromUpdate()
+bool SparkleAutoUpdater::justUpdated()
 {
     return relaunchedFromUpdate;
 }
