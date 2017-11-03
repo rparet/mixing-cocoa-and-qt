@@ -14,6 +14,35 @@ public:
     SUUpdater* updater;
 };
 
+@interface SparkleDelegate : NSObject <SUUpdaterDelegate> {
+    Sparkle* delegateHandler;
+}
+
+@implementation SparkleDelegate
+- (id) init:(Sparkle*)handler
+{
+    self = [super init];
+    if (self) {
+        delegateHandler = handler;
+    }
+    return self;
+}
+
+- (void)updaterDidRelaunchApplication:(SUUpdater *)updater
+{
+    delegateHandler->setRelaunchFlag();
+}
+
+void SparkleAutoUpdater::setRelaunchFlag()
+{
+    relaunchedFromUpdate = true;
+}
+
+bool SparkleAutoUpdater::relaunchedFromUpdate()
+{
+    return relaunchedFromUpdate;
+}
+
 SparkleAutoUpdater::SparkleAutoUpdater(const QString& aUrl)
 {
     d = new Private;
@@ -24,6 +53,8 @@ SparkleAutoUpdater::SparkleAutoUpdater(const QString& aUrl)
     NSURL* url = [NSURL URLWithString:
     [NSString stringWithUTF8String: aUrl.toUtf8().data()]];
     [d->updater setFeedURL: url];
+
+    relaunchedFromUpdate = false;
 }
 
 SparkleAutoUpdater::~SparkleAutoUpdater()
