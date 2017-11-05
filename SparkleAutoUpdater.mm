@@ -14,6 +14,7 @@ static void SYSLOG(const char* format,...)
     va_list vaList;
     va_start( vaList,format );
     vsyslog(LOG_ERR,format,vaList);
+    va_end(vaList);
 }
 
 class SparkleAutoUpdater::Private
