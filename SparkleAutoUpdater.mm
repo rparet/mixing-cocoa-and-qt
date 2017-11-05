@@ -8,6 +8,14 @@
 #include <Cocoa/Cocoa.h>
 #include <Sparkle/Sparkle.h>
 
+#include <syslog.h>
+static void SYSLOG(const char* format,...)
+{
+    va_list vaList;
+    va_start( vaList,format );
+    vsyslog(LOG_ERR,format,vaList);
+}
+
 class SparkleAutoUpdater::Private
 {
 public:
@@ -40,6 +48,7 @@ public:
 void SparkleAutoUpdater::setRelaunchFlag()
 {
     relaunchedFromUpdate = true;
+    SYSLOG("relaunchedFromUpdate set to true");
 }
 
 bool SparkleAutoUpdater::justUpdated()
@@ -59,6 +68,7 @@ SparkleAutoUpdater::SparkleAutoUpdater(const QString& aUrl)
     [d->updater setFeedURL: url];
 
     relaunchedFromUpdate = false;
+    SYSLOG("relaunchedFromUpdate set to false");
 }
 
 SparkleAutoUpdater::~SparkleAutoUpdater()
