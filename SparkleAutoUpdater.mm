@@ -49,7 +49,6 @@ public:
 void SparkleAutoUpdater::setRelaunchFlag()
 {
     relaunchedFromUpdate = true;
-    SYSLOG("relaunchedFromUpdate set to true\n");
 }
 
 bool SparkleAutoUpdater::justUpdated()
@@ -69,7 +68,6 @@ SparkleAutoUpdater::SparkleAutoUpdater(const QString& aUrl)
     [d->updater setFeedURL: url];
 
     relaunchedFromUpdate = false;
-    SYSLOG("relaunchedFromUpdate set to false\n");
 }
 
 SparkleAutoUpdater::~SparkleAutoUpdater()
