@@ -18,7 +18,7 @@
 ############################################################################
 
 
-TEMPLATE = app
+TEMPLATE = lib
 
 QT += widgets
 
@@ -26,8 +26,7 @@ HEADERS += \
     $$PWD/AutoUpdater.h
 
 SOURCES += \
-    $$PWD/AutoUpdater.cpp \
-    $$PWD/main.cpp
+    $$PWD/AutoUpdater.cpp
 
 mac {
     HEADERS += \
