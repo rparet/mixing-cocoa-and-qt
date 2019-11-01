@@ -69,9 +69,9 @@ add_library(
   ${SOURCE_FILES}
 )
 
-SET(CMAKE_CXX_FLAGS "-F${CMAKE_CURRENT_SOURCE_DIR}/../cocoapods/Pods/Sparkle")
+find_package(Sparkle)
 
 target_link_libraries( cocoa-qt-glue
-  "-framework Sparkle"
   "-framework AppKit"
+  Sparkle::Sparkle
 )
