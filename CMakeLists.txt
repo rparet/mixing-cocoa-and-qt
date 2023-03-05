@@ -20,6 +20,8 @@
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
 
+OPTION(BUILD_WITH_QT5 "Whether to build with Qt5 or Qt6." ON)
+
 IF(POLICY CMP0020)
   CMAKE_POLICY(SET CMP0020 NEW)
 ENDIF()
@@ -37,30 +39,29 @@ set(SOURCE_FILES
   AutoUpdater.cpp
 )
 
-FIND_PACKAGE(Qt5Core REQUIRED)
-FIND_PACKAGE(Qt5Widgets REQUIRED)
+IF(BUILD_WITH_QT5)
+  FIND_PACKAGE(Qt5 REQUIRED
+          COMPONENTS Core
+          Widgets)
+  SET(QT_LIBS Qt5::Core Qt5::Widgets)
+ELSE()
+  FIND_PACKAGE(Qt6 REQUIRED
+          COMPONENTS Core
+          Widgets)
+  SET(QT_LIBS Qt6::Core Qt6::Widgets)
+ENDIF()
 
-# Qt 5.7 or greater requires C++11 standard. Set this requirement conditionally to lower requirements where possible
-IF (Qt5Core_VERSION VERSION_EQUAL 5.7 OR Qt5Core_VERSION VERSION_GREATER 5.7)
+# Qt 5.7 or greater require C++11 standard. Qt6 or greater require C++17 standard.
+# Set these requirements conditionally to lower requirements where possible
+IF(NOT BUILD_WITH_QT5)
+  set(CMAKE_CXX_STANDARD 17)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ELSEIF(Qt5Core_VERSION VERSION_EQUAL 5.7 OR Qt5Core_VERSION VERSION_GREATER 5.7)
   set(CMAKE_CXX_STANDARD 11)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ENDIF()
 
-IF(Qt5_POSITION_INDEPENDENT_CODE)
-  SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
-ENDIF()
-
-ADD_DEFINITIONS(
-  ${Qt5Core_DEFINITIONS}
-  ${Qt5Widgets_DEFINTIONS}
-)
-
-
 SET(CMAKE_INCLUDE_CURRENT_DIR ON)
-INCLUDE_DIRECTORIES(
-  ${Qt5Core_INCLUDE_DIRS}
-  ${Qt5Widgets_INCLUDE_DIRS}
-)
 
 add_library(
   cocoa-qt-glue
@@ -74,4 +75,5 @@ find_package(Sparkle)
 target_link_libraries( cocoa-qt-glue
   "-framework AppKit"
   Sparkle::Sparkle
+  ${QT_LIBS}
 )
