@@ -13,7 +13,7 @@
 class SparkleAutoUpdater : public AutoUpdater
 {
 	public:
-		SparkleAutoUpdater(const QString& url);
+		SparkleAutoUpdater();
 		~SparkleAutoUpdater();
 
 		void checkForUpdates() override;
@@ -24,13 +24,9 @@ class SparkleAutoUpdater : public AutoUpdater
 		void setAutomaticallyDownloadsUpdates(bool on) override;
 		bool automaticallyDownloadsUpdates() override;
 
-		bool justUpdated() override;
-		void setRelaunchFlag();
-
 	private:
 		class Private;
 		Private* d;
-		bool relaunchedFromUpdate;
 };
 
 #endif

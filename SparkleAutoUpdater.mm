@@ -20,14 +20,13 @@ static void SYSLOG(const char* format,...)
 class SparkleAutoUpdater::Private
 {
 public:
-    SUUpdater* updater;
+    SPUUpdater* updater;
 };
 
-@interface SparkleDelegate : NSObject <SUUpdaterDelegate> {
+@interface SparkleDelegate : NSObject <SPUUpdaterDelegate> {
   SparkleAutoUpdater* delegateHandler;
 }
 
-- (void)updaterDidRelaunchApplication:(SUUpdater *)updater;
 @end
 
 @implementation SparkleDelegate
@@ -39,35 +38,32 @@ public:
     }
     return self;
 }
-
-- (void)updaterDidRelaunchApplication:(SUUpdater *)updater
-{
-    delegateHandler->setRelaunchFlag();
-}
 @end
 
-void SparkleAutoUpdater::setRelaunchFlag()
-{
-    relaunchedFromUpdate = true;
-}
-
-bool SparkleAutoUpdater::justUpdated()
-{
-    return relaunchedFromUpdate;
-}
-
-SparkleAutoUpdater::SparkleAutoUpdater(const QString& aUrl)
+SparkleAutoUpdater::SparkleAutoUpdater()
 {
     d = new Private;
 
-    d->updater = [SUUpdater sharedUpdater];
+    SparkleDelegate *sparkleDelegate = [[SparkleDelegate alloc] init:this];
+
+      // Create an SPUUpdater instance with SPUStandardUserDriver
+    d->updater = [[SPUUpdater alloc] initWithHostBundle:[NSBundle mainBundle]
+                                      applicationBundle:[NSBundle mainBundle]
+                                            userDriver:[[SPUStandardUserDriver alloc] initWithHostBundle:[NSBundle mainBundle] delegate:nil]
+                                               delegate:sparkleDelegate];
+                                              
     [d->updater retain];
 
-    NSURL* url = [NSURL URLWithString:
-    [NSString stringWithUTF8String: aUrl.toUtf8().data()]];
-    [d->updater setFeedURL: url];
-
-    relaunchedFromUpdate = false;
+    // has to be started on the main thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+      NSError *error = nil;
+      BOOL started = [d->updater startUpdater:&error];
+      if (!started) {
+          NSLog(@"Failed to start the updater: %@", error);
+      }
+      // necessary because we used -setFeedURL: in the past and now Sparkle wants us to migrate to setting the feed url in Info.plist
+      [d->updater clearFeedURLFromUserDefaults];
+    });
 }
 
 SparkleAutoUpdater::~SparkleAutoUpdater()
@@ -78,7 +74,7 @@ SparkleAutoUpdater::~SparkleAutoUpdater()
 
 void SparkleAutoUpdater::checkForUpdates()
 {
-    [d->updater checkForUpdates:nil];
+    [d->updater checkForUpdates];
 }
 
 void SparkleAutoUpdater::setAutomaticallyChecksForUpdates(bool on)
